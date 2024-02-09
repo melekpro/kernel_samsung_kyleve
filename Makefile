@@ -3,8 +3,6 @@ PATCHLEVEL = 4
 SUBLEVEL = 5
 EXTRAVERSION =
 NAME = melek saidani
-CROSS_COMPILE=${PWD}/gcc/bin/arm-eabi-
-
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
 # More info can be located in ./README
