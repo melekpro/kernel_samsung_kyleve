@@ -36,5 +36,5 @@ jobs:
     - name: Copy kernel image
       run: |
         cp -f ./kernel_out/arch/arm/boot/zImage ./arch/arm/boot/
-        cp -rf ./kernel_out/arch/arm/boot/compressed/vmlinux ./arch/arm/boot/compressed/
-        cp -rf ./kernel_out/vmlinux ./
+        cp -f ./kernel_out/arch/arm/boot/compressed/vmlinux ./arch/arm/boot/compressed/
+        cp -f ./kernel_out/vmlinux ./
