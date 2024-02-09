@@ -1,0 +1,29 @@
+name: Build Kernel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up toolchain
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-arm-linux-gnueabi
+
+    - name: Build kernel
+      run: |
+        mkdir -p kernel_out
+        cp -f ./arch/arm/configs/cyanogenmod_kylevess_defconfig ./kernel_out/.config
+        make -j8 ARCH=arm KBUILD_OUTPUT=./kernel_out oldnoconfig
+        make -j8 ARCH=arm KBUILD_OUTPUT=./kernel_out
+        cp -f ./kernel_out/arch/arm/boot/zImage ./arch/arm/boot/
+        cp -rf ./kernel_out/arch/arm/boot/compressed/vmlinux ./arch/arm/boot/compressed/
+        cp -rf ./kernel_out/vmlinux ./
