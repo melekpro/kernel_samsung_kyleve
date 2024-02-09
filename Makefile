@@ -2,8 +2,8 @@ VERSION = 3
 PATCHLEVEL = 4
 SUBLEVEL = 5
 EXTRAVERSION =
-NAME = Saber-toothed Squirrel
-CROSS_COMPILE=/opt/toolchains/arm-eabi-4.6/bin/arm-eabi-
+NAME = melek saidani
+CROSS_COMPILE=${PWD}/gcc/bin/arm-eabi-
 
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
