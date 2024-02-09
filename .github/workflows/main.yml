@@ -10,31 +10,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y gcc-arm-linux-gnueabi
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-linux-gnueabi
 
-    - name: Set up environment
-      run: |
-        export ARCH=arm
-        export CROSS_COMPILE=arm-linux-gnueabi-
-        mkdir -p kernel_out
+      - name: Set up environment
+        run: |
+          export ARCH=arm
+          export CROSS_COMPILE=arm-linux-gnueabi-
+          mkdir -p kernel_out
 
-    - name: Configure kernel
-      run: |
-        cp -f ./arch/arm/configs/cyanogenmod_kylevess_defconfig ./kernel_out/.config
-        make -j8 ARCH=arm KBUILD_OUTPUT=./kernel_out oldnoconfig
+      - name: Configure kernel
+        run: |
+          cp -f ./arch/arm/configs/cyanogenmod_kylevess_defconfig ./kernel_out/.config
+          make -j8 ARCH=arm KBUILD_OUTPUT=./kernel_out oldnoconfig
 
-    - name: Build kernel
-      run: |
-        make -j8 ARCH=arm KBUILD_OUTPUT=./kernel_out
+      - name: Build kernel
+        run: |
+          make -j8 ARCH=arm KBUILD_OUTPUT=./kernel_out
 
-    - name: Copy kernel image
-      run: |
-        cp -f ./kernel_out/arch/arm/boot/zImage ./arch/arm/boot/
-        cp -f ./kernel_out/arch/arm/boot/compressed/vmlinux ./arch/arm/boot/compressed/
-        cp -f ./kernel_out/vmlinux ./
+      - name: Copy kernel image
+        run: |
+          cp -f ./kernel_out/arch/arm/boot/zImage ./arch/arm/boot/
+          cp -f ./kernel_out/arch/arm/boot/compressed/vmlinux ./arch/arm/boot/compressed/
+          cp -f ./kernel_out/vmlinux ./
